@@ -53,17 +53,17 @@ flowchart TD
 
     subgraph Automation ["🤖 AI Assistant & Automation CLI"]
         CLI["🛠️ scripts/latex_workflow.py"]
-        QA["🔍 Visual Page QA (previews/page-*.png)"]
+        QA["🔍 Visual Page QA"]
         CI["🚀 GitHub Actions CI Pipeline"]
     end
 
-    TEX -->|Ctrl + S (Auto-Build)| MK
-    MK -->|Instant Output| PREV
-    PREV <-->|Ctrl+Alt+J / Ctrl+Click| SYNC <--> TEX
-    MK -->|Inspect Command| PPM
-    PPM -->|Extract Pages| QA
-    QA -->|Prompt Feedback| TEX
-    TEX -->|Push to GitHub| CI
+    TEX -->|"Ctrl + S (Auto-Build)"| MK
+    MK -->|"Instant Output"| PREV
+    PREV <-->|"SyncTeX Jump"| TEX
+    MK -->|"Inspect Command"| PPM
+    PPM -->|"Extract Pages"| QA
+    QA -->|"Prompt Feedback"| TEX
+    TEX -->|"Push to GitHub"| CI
 ```
 
 ---
@@ -72,9 +72,9 @@ flowchart TD
 
 | Template | Preview | Description & Scaffolding |
 | :--- | :---: | :--- |
-| **Technical Specification**<br/>`templates/technical_specification/` | <img src="assets/preview_tech_spec.png" width="220" alt="Technical Specification Preview"/> | Industrial engineering specs, ICDs, hardware/software telemetry tables, and code syntax listings.<br/><br/>```bash\npython scripts/latex_workflow.py init technical_specification my_spec\n``` |
-| **Academic Paper**<br/>`templates/academic_paper/` | <img src="assets/preview_academic_paper.png" width="220" alt="Academic Paper Preview"/> | IEEE / ACM 2-column format with bibliography references (`references.bib`), abstracts, and mathematical proofs.<br/><br/>```bash\npython scripts/latex_workflow.py init academic_paper my_paper\n``` |
-| **Executive Report**<br/>`templates/executive_report/` | <img src="assets/preview_executive_report.png" width="220" alt="Executive Report Preview"/> | Modern corporate whitepapers, KPI metric tables, and stylized callout boxes.<br/><br/>```bash\npython scripts/latex_workflow.py init executive_report my_report\n``` |
+| **Technical Specification**<br/>`templates/technical_specification/` | <img src="assets/preview_tech_spec.png" width="220" alt="Technical Specification Preview"/> | Industrial engineering specs, ICDs, hardware/software telemetry tables, and code syntax listings.<br/><br/>`python scripts/latex_workflow.py init technical_specification my_spec` |
+| **Academic Paper**<br/>`templates/academic_paper/` | <img src="assets/preview_academic_paper.png" width="220" alt="Academic Paper Preview"/> | IEEE / ACM 2-column format with bibliography references (`references.bib`), abstracts, and mathematical proofs.<br/><br/>`python scripts/latex_workflow.py init academic_paper my_paper` |
+| **Executive Report**<br/>`templates/executive_report/` | <img src="assets/preview_executive_report.png" width="220" alt="Executive Report Preview"/> | Modern corporate whitepapers, KPI metric tables, and stylized callout boxes.<br/><br/>`python scripts/latex_workflow.py init executive_report my_report` |
 
 ---
 
