@@ -1,10 +1,4 @@
-%-------------------------
-% Modern ATS-Compliant Resume in LaTeX
-% Based on standard industry/academic best practices
-% Compatible with LaTeX AI Workflow
-%------------------------
-
-\documentclass[letterpaper,11pt]{article}
+\documentclass[letterpaper,10pt]{article}
 
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
@@ -20,32 +14,35 @@
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 
+% Machine-readable ATS compliance
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyfoot{}
+\fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+% Precision Margins for 1-Page Layout
+\addtolength{\oddsidemargin}{-0.55in}
+\addtolength{\evensidemargin}{-0.55in}
+\addtolength{\textwidth}{1.1in}
+\addtolength{\topmargin}{-0.55in}
+\addtolength{\textheight}{1.1in}
 
 \urlstyle{same}
-
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large\bfseries
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+  \vspace{-6pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
 
-%-------------------------
-% Custom commands
+% Custom list commands
 \newcommand{\resumeItem}[1]{
   \item\small{
     {#1 \vspace{-2pt}}
@@ -53,118 +50,116 @@
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \small #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-5pt}
 }
 
-\newcommand{\resumeProjectHeading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
+\newcommand{\resumeProjectHeading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \small #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
 }
 
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
-
-\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.12in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
-
-%-------------------------------------------
-%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, labelsep=4pt, itemsep=1.5pt, topsep=2pt, parsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-3pt}}
 
 \begin{document}
 
 %----------HEADING----------
 \begin{center}
-    \textbf{\Huge \scshape Alex Morgan} \\ \vspace{1pt}
-    \small +1 (555) 019-2834 $|$ \href{mailto:alex.morgan@email.com}{\underline{alex.morgan@email.com}} $|$ 
-    \href{https://linkedin.com/in/alexmorgan}{\underline{linkedin.com/in/alexmorgan}} $|$
-    \href{https://github.com/alexmorgan}{\underline{github.com/alexmorgan}} $|$
-    San Francisco, CA
+    \textbf{\Huge \scshape Alex Morgan} \\ \vspace{2pt}
+    \small 
+    San Francisco, CA $|$ 
+    \href{tel:+15550192834}{\underline{+1 (555) 019-2834}} $|$ 
+    \href{mailto:alex.morgan@example.com}{\underline{alex.morgan@example.com}} $|$ 
+    \href{https://linkedin.com/in/alexmorgan}{\underline{linkedin.com/in/alexmorgan}} $|$ 
+    \href{https://github.com/alexmorgan}{\underline{github.com/alexmorgan}}
 \end{center}
-
+\vspace{-6pt}
 
 %-----------EDUCATION-----------
 \section{Education}
   \resumeSubHeadingListStart
     \resumeSubheading
       {University of California, Berkeley}{Berkeley, CA}
-      {Bachelor of Science in Computer Science \& Engineering; GPA: 3.85/4.0}{Aug 2020 -- May 2024}
-      \resumeItemListStart
-        \resumeItem{\textbf{Relevant Coursework}: Distributed Systems, Machine Learning, Operating Systems, Algorithms, Computer Vision.}
-      \resumeItemListEnd
+      {Bachelor of Science in Electrical Engineering \& Computer Sciences -- \textbf{GPA: 3.92/4.0}}{Aug 2022 -- May 2026}
   \resumeSubHeadingListEnd
-
 
 %-----------TECHNICAL SKILLS-----------
 \section{Technical Skills}
- \begin{itemize}[leftmargin=0.15in, label={}]
+ \begin{itemize}[leftmargin=0.12in, label={}, itemsep=1.5pt, topsep=1pt, parsep=0pt]
     \small{\item{
-     \textbf{Languages}{: Python, C/C++, Rust, TypeScript, Go, SQL, LaTeX, Bash} \\
-     \textbf{Frameworks \& Libraries}{: PyTorch, ROS 2, OpenCV, FastAPI, React, Node.js, NumPy, Docker} \\
-     \textbf{Developer Tools}{: Git, GitHub Actions CI/CD, Linux (Ubuntu), WSL2, Kubernetes, AWS, TensorRT} \\
-     \textbf{Specializations}{: Autonomous Systems, High-Performance Computing, State Estimation, Deep Learning}
+     \textbf{Languages}{: C, C++, Python, Rust, SQL, Bash, Go} \\
+     \textbf{Embedded \& Hardware}{: ARM Cortex-M, STM32, ESP32, FreeRTOS, Embedded Linux, PCB Design (KiCad), I2C, SPI, UART, CAN} \\
+     \textbf{Robotics \& Systems}{: ROS/ROS 2, Gazebo, Kalman Filtering, SLAM, PID Control, OpenCV, Linux Kernel Drivers} \\
+     \textbf{Protocols \& Cloud}{: MQTT, Modbus, TCP/IP, BLE, LoRa, AWS IoT Core, Docker, Git, CI/CD Actions}
     }}
  \end{itemize}
-
 
 %-----------EXPERIENCE-----------
 \section{Experience}
   \resumeSubHeadingListStart
 
     \resumeSubheading
-      {Software Engineer Intern}{Jun 2023 -- Aug 2023}
-      {Autonomous Robotics Corp}{San Francisco, CA}
+      {Robotics Innovations Inc.}{San Jose, CA}
+      {Embedded Software Engineering Intern}{May 2025 -- Aug 2025}
       \resumeItemListStart
-        \resumeItem{Engineered real-time state estimation pipeline in C++ and ROS 2, reducing trajectory drift by \textbf{34\%} over a 500-meter test circuit.}
-        \resumeItem{Developed automated CI/CD simulation tests with GitHub Actions and Docker, reducing PR regression triage time from 45 min to \textbf{8 min}.}
-        \resumeItem{Optimized point cloud registration kernel using CUDA, achieving \textbf{65 FPS} on NVIDIA Jetson Orin edge platform.}
+        \resumeItem{Developed real-time motor control and sensor fusion firmware on \textbf{STM32F4} microcontrollers using \textbf{FreeRTOS}.}
+        \resumeItem{Engineered high-speed \textbf{CAN bus} telemetry communication pipeline achieving $<$5ms end-to-end sensor transmission latency.}
+        \resumeItem{Integrated automated Hardware-in-the-Loop (HIL) testing in GitHub Actions, decreasing regression debugging time by 35\%.}
       \resumeItemListEnd
-      
+
     \resumeSubheading
-      {Undergraduate Research Assistant}{Jan 2022 -- May 2023}
-      {Berkeley AI Research (BAIR) Lab}{Berkeley, CA}
+      {Autonomous Systems Lab, UC Berkeley}{Berkeley, CA}
+      {Undergraduate Research Assistant}{Jan 2024 -- May 2025}
       \resumeItemListStart
-        \resumeItem{Co-authored research on vision-language models for robotic manipulation; evaluated on 10,000+ benchmark trials.}
-        \resumeItem{Implemented distributed training pipelines in PyTorch across 16x A100 GPUs, achieving \textbf{2.8x speedup}.}
+        \resumeItem{Designed and built a distributed sensor payload for unmanned aerial vehicles (UAVs) using \textbf{ESP32} and \textbf{LoRa} radios.}
+        \resumeItem{Authored custom Linux device drivers for I2C environmental telemetry sensors with real-time DMA transfers.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
 
-
 %-----------PROJECTS-----------
-\section{Projects}
-    \resumeSubHeadingListStart
-      \resumeProjectHeading
-          {\textbf{Latex AI Workflow} $|$ \emph{Python, LaTeX, TeX Live, GitHub Actions, Docker}}{Jan 2024}
-          \resumeItemListStart
-            \resumeItem{Architected a local Overleaf alternative with automated visual page inspection and sub-second live compilation.}
-            \resumeItem{Published open-source CLI engine with 100\% offline build capability and multi-target GitHub Actions CI.}
-          \resumeItemListEnd
-      \resumeProjectHeading
-          {\textbf{Distributed Vector Search Engine} $|$ \emph{Rust, gRPC, SIMD, RocksDB}}{Sep 2023 -- Dec 2023}
-          \resumeItemListStart
-            \resumeItem{Built high-throughput HNSW index vector database serving sub-5ms k-NN queries over 10M embeddings.}
-            \resumeItem{Benchmarked against FAISS; achieved \textbf{99.2\% recall} with 40\% lower memory footprint via scalar quantization.}
-          \resumeItemListEnd
-    \resumeSubHeadingListEnd
+\section{Key Projects}
+  \resumeSubHeadingListStart
 
+    \resumeProjectHeading
+      {Autonomous Pipeline Inspection Rover}{Jan 2025 -- Present}
+      {Technologies: C++, ROS 2, FreeRTOS, ESP32-S3, OpenCV, RS485}{}
+      \resumeItemListStart
+        \resumeItem{Designed a compact tracked robot for industrial pipeline inspection with real-time visual SLAM and obstacle avoidance.}
+      \resumeItemListEnd
 
-%-----------PUBLICATIONS & AWARDS-----------
-\section{Publications \& Honors}
- \begin{itemize}[leftmargin=0.15in, label={}]
+    \resumeProjectHeading
+      {High-Precision Industrial IoT Data Logger}{Aug 2024 -- Dec 2024}
+      {Technologies: C++, FreeRTOS, Modbus RTU, MQTT, AWS IoT, SD Card Flash}{}
+      \resumeItemListStart
+        \resumeItem{Built an ultra-low-power industrial data logger supporting Modbus telemetry with local flash caching and zero data loss on network dropouts.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PUBLICATIONS & LEADERSHIP-----------
+\section{Publications \& Leadership}
+  \resumeItemListStart
+    \resumeItem{\textbf{IEEE Conference Publication:} \emph{``Sensor Fusion for Autonomous Ground Navigation in Constrained Environments''}, IEEE IROS Workshop (2025).}
+    \resumeItem{\textbf{Leadership:} President, IEEE Student Branch at UC Berkeley (Managed 20+ technical workshops and 300+ members).}
+  \resumeItemListEnd
+
+%-----------HONORS & CERTIFICATIONS-----------
+\section{Honors \& Certifications}
+ \begin{itemize}[leftmargin=0.12in, label={}, itemsep=1.5pt, topsep=1pt, parsep=0pt]
     \small{\item{
-     \textbf{Conference Paper}{: \textit{"Deep Spatial-Temporal Alignment for Robotics Inspection Platforms"}, IEEE ICRA 2024 (Under Review).} \\
-     \textbf{Honors}{: Dean's Honors List (All Semesters), 1st Place Autonomous Robotics Hackathon 2023.}
+     \textbf{Dean's Honors List}{: UC Berkeley (4 Semesters)} \hfill \textbf{Embedded Systems Certification}{: Arm Education (Score: 95\%)} \\
+     \textbf{1st Place Winner}{: California Collegiate Robotics Hackathon 2024} \hfill \textbf{AWS Certified}{: Solutions Architect Associate}
     }}
  \end{itemize}
 
-%-------------------------------------------
 \end{document}
