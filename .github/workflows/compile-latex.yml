@@ -15,8 +15,11 @@ jobs:
       fail-fast: false
       matrix:
         target:
-          - { name: "technical_specification", path: "templates/technical_specification/main.tex", dir: "templates/technical_specification" }
+          - { name: "modern_resume", path: "templates/modern_resume/main.tex", dir: "templates/modern_resume" }
           - { name: "academic_paper", path: "templates/academic_paper/main.tex", dir: "templates/academic_paper" }
+          - { name: "academic_thesis", path: "templates/academic_thesis/main.tex", dir: "templates/academic_thesis" }
+          - { name: "beamer_presentation", path: "templates/beamer_presentation/main.tex", dir: "templates/beamer_presentation" }
+          - { name: "technical_specification", path: "templates/technical_specification/main.tex", dir: "templates/technical_specification" }
           - { name: "executive_report", path: "templates/executive_report/main.tex", dir: "templates/executive_report" }
           - { name: "robotics_technical_spec", path: "examples/robotics_technical_spec/main.tex", dir: "examples/robotics_technical_spec" }
 

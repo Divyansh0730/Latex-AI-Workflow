@@ -1,0 +1,110 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+% Theme settings
+\usetheme{Madrid}
+\usecolortheme{beaver}
+
+% Custom color palette
+\definecolor{themeblue}{RGB}{18, 52, 86}
+\definecolor{accentblue}{RGB}{0, 114, 206}
+\setbeamercolor{structure}{fg=themeblue}
+\setbeamercolor{title}{fg=white,bg=themeblue}
+\setbeamercolor{frametitle}{fg=white,bg=themeblue}
+\setbeamercolor{block title}{fg=white,bg=themeblue}
+\setbeamercolor{block body}{fg=black,bg=gray!10}
+
+\title[\textbf{Latex AI Workflow}]{\textbf{\Large Autonomous Robotic Localization \& AI Workflows}}
+\subtitle{Scalable Edge Computing and Mathematical Modeling}
+\author[\textbf{Presenter}]{\textbf{Alex Morgan, Ph.D.} \\ \small Robotics Systems Lab}
+\institute[\textbf{University}]{\small Department of Electrical Engineering \& Computer Science}
+\date[\today]{\small Conference on Robotics \& Autonomous Systems (ICRA)}
+
+\begin{document}
+
+% --- SLIDE 1: TITLE ---
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% --- SLIDE 2: OUTLINE ---
+\begin{frame}{Presentation Agenda}
+    \tableofcontents
+\end{frame}
+
+% --- SLIDE 3: PROBLEM STATEMENT ---
+\section{Motivation \& Challenges}
+\begin{frame}{Problem Formulation: GPS-Denied Inspection}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \textbf{Key Operational Bottlenecks:}
+            \begin{itemize}
+                \item Extreme wheel slippage and track deadband in industrial environments.
+                \item Severe non-uniform velocity profiles across repetitive traversal runs.
+                \item Strict computational and memory budgets on embedded edge devices ($< 5\,\text{W}$).
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Core Objective}
+                Develop a unified spatial-temporal alignment engine achieving sub-centimeter trajectory tracking without cloud dependencies.
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% --- SLIDE 4: METHODOLOGY & MATH ---
+\section{Methodology \& Architecture}
+\begin{frame}{Swept Circular Arc Kinematics}
+    \begin{block}{Discrete Pose Integration}
+        Given displacement increments $\Delta s_L$ and $\Delta s_R$ over track gauge $W$:
+        \begin{equation}
+        \Delta \theta = \frac{\Delta s_R - \Delta s_L}{W}, \quad \Delta s = \frac{\Delta s_L + \Delta s_R}{2}
+        \end{equation}
+    \end{block}
+
+    \begin{itemize}
+        \item \textbf{Linear Displacement}: $x_{k+1} = x_k + \Delta s \cdot \cos(\theta_k + \Delta\theta / 2)$
+        \item \textbf{Lateral Displacement}: $y_{k+1} = y_k + \Delta s \cdot \sin(\theta_k + \Delta\theta / 2)$
+    \end{itemize}
+\end{frame}
+
+% --- SLIDE 5: RESULTS ---
+\section{Experimental Results}
+\begin{frame}{Benchmark Evaluation}
+    \begin{center}
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Method} & \textbf{RMSE Error (m)} & \textbf{Max Drift (m)} & \textbf{Latency (ms)} \\
+        \midrule
+        Raw Encoder Dead-Reckoning & 0.384 & 0.812 & \textbf{0.4} \\
+        Standard Particle Filter   & 0.092 & 0.184 & 18.2 \\
+        \textbf{Ours (Constrained DTW + Arc)} & \textbf{0.012} & \textbf{0.024} & 4.1 \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
+
+    \begin{alertblock}{Key Takeaway}
+        Achieved a \textbf{76\% error reduction} while operating within a real-time $100\,\text{Hz}$ execution envelope.
+    \end{alertblock}
+\end{frame}
+
+% --- SLIDE 6: CONCLUSION ---
+\section{Conclusion}
+\begin{frame}{Summary \& Acknowledgments}
+    \begin{itemize}
+        \item Presented a lightweight, production-grade localization and document workflow.
+        \item 100\% reproducible, open-source, and offline capable.
+    \end{itemize}
+    \vspace{0.6cm}
+    \centering
+    \textbf{\huge Thank You!}\\[0.3cm]
+    \normalsize Questions \& Discussion \quad $\bullet$ \quad \texttt{alex.morgan@email.com}
+\end{frame}
+
+\end{document}

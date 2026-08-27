@@ -1,0 +1,170 @@
+%-------------------------
+% Modern ATS-Compliant Resume in LaTeX
+% Based on standard industry/academic best practices
+% Compatible with LaTeX AI Workflow
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Alex Morgan} \\ \vspace{1pt}
+    \small +1 (555) 019-2834 $|$ \href{mailto:alex.morgan@email.com}{\underline{alex.morgan@email.com}} $|$ 
+    \href{https://linkedin.com/in/alexmorgan}{\underline{linkedin.com/in/alexmorgan}} $|$
+    \href{https://github.com/alexmorgan}{\underline{github.com/alexmorgan}} $|$
+    San Francisco, CA
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of California, Berkeley}{Berkeley, CA}
+      {Bachelor of Science in Computer Science \& Engineering; GPA: 3.85/4.0}{Aug 2020 -- May 2024}
+      \resumeItemListStart
+        \resumeItem{\textbf{Relevant Coursework}: Distributed Systems, Machine Learning, Operating Systems, Algorithms, Computer Vision.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, C/C++, Rust, TypeScript, Go, SQL, LaTeX, Bash} \\
+     \textbf{Frameworks \& Libraries}{: PyTorch, ROS 2, OpenCV, FastAPI, React, Node.js, NumPy, Docker} \\
+     \textbf{Developer Tools}{: Git, GitHub Actions CI/CD, Linux (Ubuntu), WSL2, Kubernetes, AWS, TensorRT} \\
+     \textbf{Specializations}{: Autonomous Systems, High-Performance Computing, State Estimation, Deep Learning}
+    }}
+ \end{itemize}
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Software Engineer Intern}{Jun 2023 -- Aug 2023}
+      {Autonomous Robotics Corp}{San Francisco, CA}
+      \resumeItemListStart
+        \resumeItem{Engineered real-time state estimation pipeline in C++ and ROS 2, reducing trajectory drift by \textbf{34\%} over a 500-meter test circuit.}
+        \resumeItem{Developed automated CI/CD simulation tests with GitHub Actions and Docker, reducing PR regression triage time from 45 min to \textbf{8 min}.}
+        \resumeItem{Optimized point cloud registration kernel using CUDA, achieving \textbf{65 FPS} on NVIDIA Jetson Orin edge platform.}
+      \resumeItemListEnd
+      
+    \resumeSubheading
+      {Undergraduate Research Assistant}{Jan 2022 -- May 2023}
+      {Berkeley AI Research (BAIR) Lab}{Berkeley, CA}
+      \resumeItemListStart
+        \resumeItem{Co-authored research on vision-language models for robotic manipulation; evaluated on 10,000+ benchmark trials.}
+        \resumeItem{Implemented distributed training pipelines in PyTorch across 16x A100 GPUs, achieving \textbf{2.8x speedup}.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Latex AI Workflow} $|$ \emph{Python, LaTeX, TeX Live, GitHub Actions, Docker}}{Jan 2024}
+          \resumeItemListStart
+            \resumeItem{Architected a local Overleaf alternative with automated visual page inspection and sub-second live compilation.}
+            \resumeItem{Published open-source CLI engine with 100\% offline build capability and multi-target GitHub Actions CI.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Distributed Vector Search Engine} $|$ \emph{Rust, gRPC, SIMD, RocksDB}}{Sep 2023 -- Dec 2023}
+          \resumeItemListStart
+            \resumeItem{Built high-throughput HNSW index vector database serving sub-5ms k-NN queries over 10M embeddings.}
+            \resumeItem{Benchmarked against FAISS; achieved \textbf{99.2\% recall} with 40\% lower memory footprint via scalar quantization.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------PUBLICATIONS & AWARDS-----------
+\section{Publications \& Honors}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Conference Paper}{: \textit{"Deep Spatial-Temporal Alignment for Robotics Inspection Platforms"}, IEEE ICRA 2024 (Under Review).} \\
+     \textbf{Honors}{: Dean's Honors List (All Semesters), 1st Place Autonomous Robotics Hackathon 2023.}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}

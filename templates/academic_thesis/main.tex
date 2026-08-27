@@ -1,0 +1,120 @@
+\documentclass[11pt,a4paper,oneside]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.1in, headheight=16pt, top=1.2in, bottom=1.2in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{xcolor}
+
+\definecolor{thesisblue}{RGB}{16, 44, 87}
+\definecolor{thesisteal}{RGB}{53, 101, 169}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=thesisblue,
+    citecolor=thesisteal,
+    urlcolor=thesisteal
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\slshape\leftmark}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+
+% Chapter formatting
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{thesisblue}}{\chaptertitlename\ \thechapter}{18pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{10pt}{30pt}
+
+\begin{document}
+
+% --- TITLE PAGE ---
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+    {\Huge\bfseries\color{thesisblue} Scalable Geometric Deep Learning for Autonomous Multi-Agent Robotics \par}
+    \vspace{1.5cm}
+    {\Large\itshape Master of Science Thesis in Computer Science \& Engineering \par}
+    \vspace{2cm}
+    {\large\textbf{Author Name} \par}
+    \vspace{0.5cm}
+    {\normalsize Department of Electrical Engineering and Computer Science \par}
+    {\normalsize University of Excellence \par}
+    \vfill
+    {\large Supervised by \par}
+    {\large\textbf{Prof. Advisor Name} \par}
+    \vfill
+    {\large\today \par}
+\end{titlepage}
+
+% --- ABSTRACT ---
+\pagenumbering{roman}
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+Autonomous multi-agent robotic systems deployed in unstructured environments require rigorous distributed state estimation and real-time coordination. In this thesis, we develop a unified geometric deep learning formulation operating over $SE(3)$ manifold representations. We prove convergence bounds for distributed consensus filtering and demonstrate sub-centimeter localization fidelity on embedded edge computing architectures.
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\clearpage
+\pagenumbering{arabic}
+
+% --- CHAPTER 1 ---
+\chapter{Introduction}
+\section{Motivation \& Problem Statement}
+Multi-robot coordination in GPS-denied environments presents severe mathematical and computational challenges. Classical filtering architectures struggle under non-Gaussian sensory noise and communication latency.
+
+\begin{definition}[$SE(3)$ Lie Group Pose]
+A rigid body pose $T \in SE(3)$ consists of a rotation matrix $R \in SO(3)$ and a translation vector $p \in \mathbb{R}^3$, represented in homogeneous coordinates as:
+\begin{equation}
+T = \begin{bmatrix} R & p \\ 0 & 1 \end{bmatrix} \in \mathbb{R}^{4 \times 4}
+\end{equation}
+\end{definition}
+
+\chapter{Theoretical Foundations}
+\section{Manifold Consensus Optimization}
+Let $\mathcal{G} = (\mathcal{V}, \mathcal{E})$ denote the inter-robot communication topology graph. The distributed optimization objective is formulated as:
+\begin{equation}
+\min_{x_i \in \mathcal{M}} \sum_{i \in \mathcal{V}} f_i(x_i) + \sum_{(i, j) \in \mathcal{E}} d_{\mathcal{M}}^2(x_i, x_j)
+\end{equation}
+where $d_{\mathcal{M}}(\cdot, \cdot)$ denotes the Riemannian geodesic distance metric on manifold $\mathcal{M}$.
+
+\begin{theorem}[Geometric Convergence Bound]
+Under strongly geodesic convexity on Riemannian manifolds with sectional curvature bounded by $\kappa$, the consensus algorithm achieves linear convergence $\mathcal{O}(\gamma^k)$ with rate $\gamma < 1$.
+\end{theorem}
+
+\chapter{Experimental Results \& Conclusion}
+\begin{table}[h!]
+\centering
+\caption{Benchmark Trajectory Accuracy Across Heterogeneous Environments}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Algorithm Architecture} & \textbf{ATE (m)} & \textbf{RPE (deg/m)} & \textbf{Latency (ms)} \\
+\midrule
+Standard EKF SLAM               & 0.284 & 1.42 & \textbf{1.8} \\
+Factor Graph Smoothing          & 0.086 & 0.45 & 12.4 \\
+\textbf{Ours (Manifold GNN)}    & \textbf{0.019} & \textbf{0.09} & 4.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Summary \& Future Work}
+This work established a scalable framework bridging Riemannian geometry and graph neural networks for robotic swarms. Future directions include hardware validation under non-line-of-sight RF environments.
+
+\end{document}
