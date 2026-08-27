@@ -30,7 +30,7 @@ jobs:
       - name: Compile LaTeX Document (${{ matrix.target.name }})
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: ${{ matrix.target.path }}
+          root_file: main.tex
           working_directory: ${{ matrix.target.dir }}
           latexmk_use_lualatex: false
           latexmk_use_xelatex: false
