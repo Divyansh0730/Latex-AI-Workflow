@@ -233,15 +233,19 @@ Latex-AI-Workflow/
 
 ---
 
----
-
-## ⭐ Star History
+## ⭐ Community & Stargazers
 
 If you find **Latex AI Workflow** helpful for your academic, professional, or corporate documents, please consider giving it a star on GitHub!
 
 <div align="center">
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Divyansh0730/Latex-AI-Workflow&type=Date)](https://star-history.com/#Divyansh0730/Latex-AI-Workflow&Date)
+[![GitHub stars](https://img.shields.io/github/stars/Divyansh0730/Latex-AI-Workflow?style=for-the-badge&logo=github&color=gold)](https://github.com/Divyansh0730/Latex-AI-Workflow/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Divyansh0730/Latex-AI-Workflow?style=for-the-badge&logo=github&color=blue)](https://github.com/Divyansh0730/Latex-AI-Workflow/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/Divyansh0730/Latex-AI-Workflow?style=for-the-badge&logo=github&color=green)](https://github.com/Divyansh0730/Latex-AI-Workflow/watchers)
+
+<p align="center">
+  <a href="https://star-history.com/#Divyansh0730/Latex-AI-Workflow&Date">📈 <b>Track Live Star History Graph</b></a>
+</p>
 
 </div>
 
