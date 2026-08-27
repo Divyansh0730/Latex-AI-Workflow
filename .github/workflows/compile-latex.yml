@@ -1,0 +1,42 @@
+name: Build LaTeX Documents & PDF Verification
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-latex-templates:
+    name: Build & Verify Templates
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - { name: "technical_specification", path: "templates/technical_specification/main.tex", dir: "templates/technical_specification" }
+          - { name: "academic_paper", path: "templates/academic_paper/main.tex", dir: "templates/academic_paper" }
+          - { name: "executive_report", path: "templates/executive_report/main.tex", dir: "templates/executive_report" }
+          - { name: "robotics_technical_spec", path: "examples/robotics_technical_spec/main.tex", dir: "examples/robotics_technical_spec" }
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX Document (${{ matrix.target.name }})
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: ${{ matrix.target.path }}
+          working_directory: ${{ matrix.target.dir }}
+          latexmk_use_lualatex: false
+          latexmk_use_xelatex: false
+          args: "-synctex=1 -interaction=nonstopmode -file-line-error -pdf"
+
+      - name: Upload PDF Artifact (${{ matrix.target.name }})
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-${{ matrix.target.name }}
+          path: ${{ matrix.target.dir }}/main.pdf
+          if-no-files-found: error
+          retention-days: 14

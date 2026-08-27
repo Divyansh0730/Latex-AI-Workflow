@@ -1,0 +1,55 @@
+# ==============================================================================
+# LaTeX AI Workflow - Comprehensive .gitignore
+# ==============================================================================
+
+# LaTeX Auxiliary Build Files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.vrb
+*.upa
+*.upb
+*.xdv
+*.bcf
+*.run.xml
+
+# Python Caches & Virtual Environments
+__pycache__/
+*.py[cod]
+*.class
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+
+# OS Specific Junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# VS Code / Antigravity User State
+.vscode/*.log
+.vscode/.history/
+.vscode/.browse.c_cpp.db*
+
+# Temporary build directories
+build/
+dist/
+tmp/

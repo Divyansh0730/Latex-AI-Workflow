@@ -1,0 +1,66 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.9in, headheight=16pt, top=1.1in, bottom=1.1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+% Corporate Palette
+\definecolor{corpnavy}{RGB}{20, 40, 80}
+\definecolor{corpteal}{RGB}{0, 150, 160}
+\definecolor{corpgold}{RGB}{220, 160, 40}
+\definecolor{boxbg}{RGB}{245, 248, 252}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{corpnavy}{\textbf{Executive Technology Brief}}}
+\fancyhead[R]{\small\textcolor{gray}{Confidential}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\titleformat{\section}{\large\bfseries\color{corpnavy}}{\thesection}{0.8em}{}[\vspace{-2pt}\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{corpteal}}{\thesubsection}{0.8em}{}
+
+\begin{document}
+
+\begin{center}
+    {\huge\bfseries\color{corpnavy} Executive Engineering Report} \\[0.3cm]
+    {\large Next-Generation Autonomous Pipeline Inspection Infrastructure} \\[0.2cm]
+    \textcolor{gray}{\today \quad | \quad Prepared for Executive Leadership}
+\end{center}
+
+\vspace{0.4cm}
+
+\begin{tcolorbox}[colback=boxbg, colframe=corpteal, title=\textbf{Executive Summary}]
+This report outlines the technical milestones, efficiency gains, and deployment roadmap for the automated robotics inspection stack. Deployment across key test facilities demonstrated a \textbf{72\% reduction} in manual inspection hours alongside a \textbf{99.4\% spatial tracking fidelity}.
+\end{tcolorbox}
+
+\section{Strategic Key Performance Indicators (KPIs)}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{l c c X}
+\toprule
+\textbf{Metric} & \textbf{Baseline} & \textbf{Target} & \textbf{Business Impact} \\
+\midrule
+Inspection Turnaround & 4.5 hrs & \textbf{1.2 hrs} & Accelerated operational readiness. \\
+Spatial Resolution & $\pm 5.0\,\text{cm}$ & \textbf{$\pm 0.5\,\text{cm}$} & Precise defect localization for compliance. \\
+Sensor Sampling Rate & 10\,Hz & \textbf{100\,Hz} & High-density environmental telemetry. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Key Technology Highlights}
+\begin{itemize}
+    \item \textbf{High-Frequency Micro-Odometry}: Ingests wheel encoder and 9-DoF IMU telemetry at 100\,Hz with zero-drift deadband filtering.
+    \item \textbf{Synchronized DTW Video Localization}: Automatically matches before-and-after duct cleaning videos using distance-indexed keyframing.
+\end{itemize}
+
+\end{document}

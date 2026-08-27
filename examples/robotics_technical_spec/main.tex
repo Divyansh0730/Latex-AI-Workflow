@@ -1,0 +1,87 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.85in, headheight=16pt, top=1.1in, bottom=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{caption}
+
+\definecolor{primaryblue}{RGB}{18, 52, 86}
+\definecolor{accentblue}{RGB}{0, 114, 206}
+\definecolor{codebg}{RGB}{245, 247, 250}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primaryblue,
+    urlcolor=accentblue
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{16pt}
+\fancyhead[L]{\small\textcolor{primaryblue}{\textbf{RoboTrack Spec Demo}}}
+\fancyhead[R]{\small\textcolor{gray}{Roboserv 4i}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\titleformat{\section}{\large\bfseries\color{primaryblue}}{\thesection}{0.8em}{}[\vspace{-2pt}\titlerule]
+
+\title{
+    \vspace{-1.2cm}
+    \textbf{\huge \color{primaryblue} RoboTrack Platform} \\
+    \vspace{0.2cm}
+    \Large \textbf{Example Technical Specification} \\
+    \vspace{0.15cm}
+    \normalsize Document ID: \texttt{DEMO-001} \quad | \quad Revision 1.0.0
+}
+\author{\textbf{Eng. Divyansh Jha} \quad \& \quad \textbf{AI Assistant}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{abstract}
+\noindent This is a working demo document compiled via the \textbf{Latex AI Workflow} engine. It demonstrates math equation rendering, code syntax highlighting, and responsive table formatting without float bottlenecks.
+\end{abstract}
+
+\section{Core Differential Kinematics}
+The circular-arc state estimation model is formulated as:
+\begin{equation}
+\Delta s = \frac{\Delta s_L + \Delta s_R}{2}, \quad \Delta \theta = \frac{\Delta s_R - \Delta s_L}{W}
+\end{equation}
+\begin{equation}
+x_{k+1} = x_k + \frac{\Delta s}{\Delta \theta} \big(\sin(\theta_k + \Delta \theta) - \sin\theta_k\big)
+\end{equation}
+
+\section{Interface Control Specification}
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{@{} l l c Y @{}}
+\toprule
+\textbf{Topic} & \textbf{Type} & \textbf{Rate} & \textbf{Description} \\
+\midrule
+\texttt{/odom} & \texttt{nav\_msgs/Odometry} & 100\,Hz & Filtered 6-DoF state estimate \\
+\texttt{/pose} & \texttt{geometry\_msgs/PoseStamped} & 100\,Hz & Front-face reference pose \\
+\texttt{/imu}  & \texttt{sensor\_msgs/Imu} & 100\,Hz & Calibrated accelerometer and gyro telemetry \\
+\bottomrule
+\end{tabularx}
+\vspace{-4pt}
+\captionof{table}{Interface Definition Table}
+\end{center}
+
+\end{document}

@@ -1,0 +1,156 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.85in, headheight=16pt, top=1.1in, bottom=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{caption}
+
+% --- Professional Color Palette ---
+\definecolor{primaryblue}{RGB}{18, 52, 86}
+\definecolor{accentblue}{RGB}{0, 114, 206}
+\definecolor{darkgray}{RGB}{35, 35, 35}
+\definecolor{lightgraybg}{RGB}{248, 249, 250}
+\definecolor{codebg}{RGB}{245, 247, 250}
+\definecolor{keywordcolor}{RGB}{0, 102, 153}
+\definecolor{stringcolor}{RGB}{163, 21, 21}
+\definecolor{commentcolor}{RGB}{0, 128, 0}
+
+% --- Tabularx Column Types ---
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% --- Hyperlink Setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primaryblue,
+    urlcolor=accentblue,
+    citecolor=primaryblue,
+    pdfauthor={Lead Systems Engineer},
+    pdftitle={System Engineering Specification}
+}
+
+% --- Code Listing Setup ---
+\lstset{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\scriptsize\color{darkgray},
+    breaklines=true,
+    breakatwhitespace=true,
+    columns=fullflexible,
+    keepspaces=true,
+    numbers=left,
+    numberstyle=\tiny\color{gray!70},
+    numbersep=5pt,
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{primaryblue!30},
+    commentstyle=\color{commentcolor}\itshape,
+    keywordstyle=\color{keywordcolor}\bfseries,
+    stringstyle=\color{stringcolor},
+    xleftmargin=12pt,
+    framexleftmargin=12pt,
+    tabsize=4,
+    showstringspaces=false
+}
+
+% --- Header & Footer (Collision-Proof) ---
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{16pt}
+\fancyhead[L]{\small\textcolor{primaryblue}{\textbf{Project Technical Specification}}}
+\fancyhead[R]{\small\textcolor{gray}{Engineering Dept.}}
+\fancyfoot[C]{\small\thepage}
+\fancyfoot[R]{\tiny\textcolor{gray!70}{DOC-SPEC-001}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Professional Headings ---
+\titleformat{\section}{\large\bfseries\color{primaryblue}}{\thesection}{0.8em}{}[\vspace{-2pt}\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{primaryblue!90}}{\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}{\small\bfseries\color{primaryblue!75}}{\thesubsubsection}{0.8em}{}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+
+\title{
+    \vspace{-1.2cm}
+    \textbf{\huge \color{primaryblue} Autonomous Robotics Platform} \\
+    \vspace{0.2cm}
+    \Large \textbf{System Engineering \& Architecture Specification} \\
+    \vspace{0.15cm}
+    \normalsize Document ID: \texttt{DOC-SPEC-001} \quad | \quad Revision 1.0.0
+}
+\author{\textbf{Lead Systems Engineer} \quad \& \quad \textbf{Robotics Engineering Team}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{abstract}
+\noindent This document establishes the official technical baseline, mathematical derivations, communication interfaces, and verification requirements for the robotic platform. The architecture ensures high-throughput telemetry ingestion, deterministic state estimation, and reliable integration across embedded compute platforms.
+\end{abstract}
+
+\vspace{-0.2cm}
+\tableofcontents
+\vspace{0.3cm}
+
+\section{System Architecture}
+The system architecture separates high-frequency real-time sensor polling from compute-intensive localization and computer vision workloads.
+
+\begin{center}
+\begin{lstlisting}[language={}, numbers=none, basicstyle=\ttfamily\tiny\color{darkgray}]
+ [Sensor Suite] ---> [Real-time Microcontroller] ---> (Serial/CAN/RS485) ---> [ROS 2 Compute Host]
+                                                                                     |
+                                                                                     v
+                                                                             [Navigation Core]
+\end{lstlisting}
+\vspace{-4pt}
+\captionof{figure}{System Data Flow}
+\end{center}
+
+\section{Kinematics \& Mathematical Formulation}
+The differential kinematics for linear velocity $v$ and angular velocity $\omega$ are defined by track velocities $v_L$ and $v_R$ separated by baseline gauge $W$:
+\begin{equation}
+v = \frac{v_R + v_L}{2}, \quad \omega = \frac{v_R - v_L}{W}
+\end{equation}
+
+For discrete integration over timestep $\Delta t$, the updated 2D pose $(x_{k+1}, y_{k+1}, \theta_{k+1})$ is calculated as:
+\begin{equation}
+\theta_{k+1} = \theta_k + \omega \Delta t, \quad x_{k+1} = x_k + v \Delta t \cos\theta_{k+1}, \quad y_{k+1} = y_k + v \Delta t \sin\theta_{k+1}
+\end{equation}
+
+\section{Interface Control Document (ICD)}
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{@{} l l c Y @{}}
+\toprule
+\textbf{Topic / Interface} & \textbf{Message Type} & \textbf{Rate} & \textbf{Description} \\
+\midrule
+\texttt{/odom} & \texttt{nav\_msgs/Odometry} & 100\,Hz & Position $(X,Y,Z)$, quaternion, linear and angular velocities \\
+\texttt{/robot/pose} & \texttt{geometry\_msgs/PoseStamped} & 100\,Hz & 2D/3D stamped pose in \texttt{odom} coordinate frame \\
+\texttt{/robot/sensors} & \texttt{sensor\_msgs/Imu} & 100\,Hz & Calibrated 9-DoF IMU acceleration and gyro rates \\
+\texttt{/tf} & \texttt{tf2\_msgs/TFMessage} & 100\,Hz & Dynamic transformation tree (\texttt{odom} $\to$ \texttt{base\_link}) \\
+\bottomrule
+\end{tabularx}
+\vspace{-4pt}
+\captionof{table}{System Interface Specification}
+\end{center}
+
+\section{Verification \& Test Summary}
+All software components are subjected to continuous integration and automated testing:
+\begin{itemize}
+    \item \textbf{Unit Tests}: $100\%$ pass rate across kinematic integration suites.
+    \item \textbf{Timing Jitter}: Telemetry packet arrival latency guaranteed $< 1.5\,\text{ms}$.
+\end{itemize}
+
+\end{document}

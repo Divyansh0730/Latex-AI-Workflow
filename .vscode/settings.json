@@ -1,0 +1,52 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk-wsl",
+      "command": "wsl",
+      "args": [
+        "-d",
+        "Ubuntu-22.04",
+        "latexmk",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "%DOCFILE%"
+      ]
+    },
+    {
+      "name": "pdflatex-wsl",
+      "command": "wsl",
+      "args": [
+        "-d",
+        "Ubuntu-22.04",
+        "pdflatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOCFILE%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (WSL)",
+      "tools": [
+        "latexmk-wsl"
+      ]
+    },
+    {
+      "name": "pdflatex (WSL)",
+      "tools": [
+        "pdflatex-wsl"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "latexmk (WSL)",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.synctex.afterBuild.enabled": true,
+  "latex-workshop.latex.clean.subfolder.enabled": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1500
+}
