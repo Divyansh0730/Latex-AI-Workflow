@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "latex-ai-workflow"
+version = "1.1.0"
+description = "Universal, AI-Augmented, Publication-Grade LaTeX Framework & CLI Engine"
+readme = "README.md"
+authors = [
+  { name = "Divyansh Jha", email = "divyanshjha3007@gmail.com" }
+]
+license = "MIT"
+requires-python = ">=3.8"
+keywords = ["latex", "tex", "ai", "overleaf", "workflow", "resume", "thesis", "beamer", "automation"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Text Processing :: Markup :: LaTeX",
+]
+
+[project.urls]
+Homepage = "https://github.com/Divyansh0730/Latex-AI-Workflow"
+Repository = "https://github.com/Divyansh0730/Latex-AI-Workflow.git"
+Issues = "https://github.com/Divyansh0730/Latex-AI-Workflow/issues"
+
+[project.scripts]
+latex-workflow = "scripts.latex_workflow:main"
+
+[tool.setuptools]
+packages = ["scripts"]

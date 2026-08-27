@@ -1,24 +1,26 @@
 <div align="center">
 
 # 🚀 Latex AI Workflow
-### Universal, AI-Augmented, Publication-Grade LaTeX Framework
+### Universal, AI-Augmented, Publication-Grade LaTeX Framework & CLI Engine
 **An Overleaf-Equivalent Local LaTeX Stack for Resumes, Academic Papers, Theses, Slides & Technical Docs**
 
+[![Release](https://img.shields.io/badge/Release-v1.1.0-blue.svg?style=flat-square)](CHANGELOG.md)
 [![Build & Verify](https://github.com/Divyansh0730/Latex-AI-Workflow/actions/workflows/compile-latex.yml/badge.svg)](https://github.com/Divyansh0730/Latex-AI-Workflow/actions/workflows/compile-latex.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Engine: TeX Live](https://img.shields.io/badge/TeX_Live-2023%2B-green.svg?style=flat-square&logo=latex)](https://www.tug.org/texlive/)
-[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows%20%7C%20Codespaces-orange.svg?style=flat-square)](https://github.com/Divyansh0730/Latex-AI-Workflow)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+[![Engine: TeX Live](https://img.shields.io/badge/TeX_Live-2023%2B-forestgreen.svg?style=flat-square&logo=latex)](https://www.tug.org/texlive/)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows%20%7C%20Termux%20%7C%20Codespaces-orange.svg?style=flat-square)](https://github.com/Divyansh0730/Latex-AI-Workflow)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 [![DevContainer](https://img.shields.io/badge/DevContainer-1--Click%20Ready-blueviolet.svg?style=flat-square&logo=visualstudiocode)](.devcontainer/devcontainer.json)
-[![Python](https://img.shields.io/badge/Python-3.9%2B-yellow.svg?style=flat-square&logo=python)](https://python.org)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-yellow.svg?style=flat-square&logo=python)](https://python.org)
 
 <p align="center">
-  <a href="#-why-latex-ai-workflow">Why Use This?</a> •
-  <a href="#-template-showcase-gallery">Template Gallery</a> •
-  <a href="#-universal-quick-start">Quick Start</a> •
-  <a href="#-in-editor-workflow--shortcuts">Editor Guide</a> •
-  <a href="#-master-cli-engine">CLI Engine</a> •
-  <a href="#-ai-prompt-playbook">AI Playbook</a> •
-  <a href="#-overleaf-vs-latex-ai-workflow">Comparison</a>
+  <a href="#-universal-quick-start">⚡ Quick Start</a> •
+  <a href="#-template-showcase-gallery">🎨 Template Gallery</a> •
+  <a href="#-master-cli-engine">🛠️ CLI Engine</a> •
+  <a href="#-in-editor-workflow--shortcuts">🖥️ Editor Guide</a> •
+  <a href="#-ai-prompt-playbook">🤖 AI Playbook</a> •
+  <a href="#-overleaf-vs-latex-ai-workflow">📊 Comparison</a> •
+  <a href="CHANGELOG.md">📜 Changelog</a>
 </p>
 
 </div>
@@ -37,44 +39,45 @@ Whether you are a **software engineer formatting an ATS-friendly resume**, a **r
 
 ---
 
+## ⚡ Universal Quick Start
+
+Get up and running in seconds on **Linux, macOS, Windows (WSL2 / Native), Termux, or GitHub Codespaces**:
+
+### 🌟 Option 1: 1-Line Universal Setup (Recommended)
+```bash
+# Clone the repository
+git clone https://github.com/Divyansh0730/Latex-AI-Workflow.git
+cd Latex-AI-Workflow
+
+# Run the universal cross-platform installer & environment doctor
+chmod +x scripts/setup.sh && ./scripts/setup.sh
+```
+
+### 📦 Option 2: Python CLI Package Installation
+Install `latex-workflow` as a global command in your environment:
+```bash
+pip install -e .
+latex-workflow doctor
+```
+
+### ☁️ Option 3: 1-Click GitHub Codespaces / DevContainer (Zero Local Setup)
+1. Click **Code $\to$ Codespaces $\to$ Create codespace on main**.
+2. Everything (TeX Live, fonts, extensions, utilities) installs automatically within seconds.
+
+---
+
 ## 🎨 Template Showcase Gallery
 
 Explore production-ready, pre-styled templates designed for real-world document needs:
 
 | Template | Preview | Use Case & Scaffolding |
 | :--- | :---: | :--- |
-| **Modern ATS Resume**<br/>`templates/modern_resume/` | <img src="assets/preview_resume.png" width="180" alt="Modern Resume Preview"/> | **1-Page ATS-Optimized Tech & Software Resume** (Jake's Resume style). Clean typography, bulleted impact metrics, and high information density.<br/><br/>`python scripts/latex_workflow.py init modern_resume my_resume` |
-| **Academic Research Paper**<br/>`templates/academic_paper/` | <img src="assets/preview_academic_paper.png" width="180" alt="Academic Paper Preview"/> | **IEEE / ACM / arXiv 2-Column Paper** with BibTeX citation engine (`references.bib`), mathematical proofs, theorem boxes, and responsive tables.<br/><br/>`python scripts/latex_workflow.py init academic_paper my_paper` |
-| **Academic Thesis / Book**<br/>`templates/academic_thesis/` | <img src="assets/preview_thesis.png" width="180" alt="Academic Thesis Preview"/> | **Master / PhD Dissertation & Thesis Book** with title page, abstract, table of contents, list of figures, lemma environments, and chapter styling.<br/><br/>`python scripts/latex_workflow.py init academic_thesis my_thesis` |
-| **Conference Slides (Beamer)**<br/>`templates/beamer_presentation/` | <img src="assets/preview_beamer.png" width="180" alt="Beamer Presentation Preview"/> | **Modern 16:9 Presentation Deck** for conference talks, lecture slides, and technical presentations with columns and code blocks.<br/><br/>`python scripts/latex_workflow.py init beamer_presentation my_slides` |
-| **Technical Specification**<br/>`templates/technical_specification/` | <img src="assets/preview_tech_spec.png" width="180" alt="Technical Specification Preview"/> | **Industrial & Software Engineering RFCs / Specs**, Interface Control Documents (ICDs), telemetry tables, and code syntax listings.<br/><br/>`python scripts/latex_workflow.py init technical_specification my_spec` |
-| **Executive Report**<br/>`templates/executive_report/` | <img src="assets/preview_executive_report.png" width="180" alt="Executive Report Preview"/> | **Corporate Whitepapers & Proposals** with styled callout boxes, KPI metric tracking, and modern executive headers.<br/><br/>`python scripts/latex_workflow.py init executive_report my_report` |
-
----
-
-## ⚡ Universal Quick Start
-
-This workflow runs seamlessly on **Windows, macOS, Linux, and GitHub Codespaces**.
-
-### Option A: 1-Click GitHub Codespaces / DevContainer (Zero Local Install)
-1. Click **Code $\to$ Open in Codespaces** (or open in VS Code with DevContainers).
-2. The environment automatically installs all TeX Live packages, fonts, and extensions ready to compile in 10 seconds.
-
-### Option B: Local Setup (Linux / macOS / Windows WSL2)
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/Divyansh0730/Latex-AI-Workflow.git
-   cd Latex-AI-Workflow
-   ```
-
-2. **Run the universal setup script:**
-   * **Linux (Ubuntu / Debian / WSL2) & macOS:**
-     ```bash
-     chmod +x scripts/setup.sh
-     ./scripts/setup.sh
-     ```
-   * **Windows (Native with MiKTeX / TeX Live):** Ensure `latexmk` and `pdftoppm` are added to your Windows PATH.
+| **Modern ATS Resume**<br/>`templates/modern_resume/` | <img src="assets/preview_resume.png" width="180" alt="Modern Resume Preview"/> | **1-Page ATS-Optimized Tech & Software Resume** (Jake's Resume style). Clean typography, bulleted impact metrics, and high information density.<br/><br/>`latex-workflow init modern_resume my_resume` |
+| **Academic Research Paper**<br/>`templates/academic_paper/` | <img src="assets/preview_academic_paper.png" width="180" alt="Academic Paper Preview"/> | **IEEE / ACM / arXiv 2-Column Paper** with BibTeX citation engine (`references.bib`), mathematical proofs, theorem boxes, and responsive tables.<br/><br/>`latex-workflow init academic_paper my_paper` |
+| **Academic Thesis / Book**<br/>`templates/academic_thesis/` | <img src="assets/preview_thesis.png" width="180" alt="Academic Thesis Preview"/> | **Master / PhD Dissertation & Thesis Book** with title page, abstract, table of contents, list of figures, lemma environments, and chapter styling.<br/><br/>`latex-workflow init academic_thesis my_thesis` |
+| **Conference Slides (Beamer)**<br/>`templates/beamer_presentation/` | <img src="assets/preview_beamer.png" width="180" alt="Beamer Presentation Preview"/> | **Modern 16:9 Presentation Deck** for conference talks, lecture slides, and technical presentations with columns and code blocks.<br/><br/>`latex-workflow init beamer_presentation my_slides` |
+| **Technical Specification**<br/>`templates/technical_specification/` | <img src="assets/preview_tech_spec.png" width="180" alt="Technical Specification Preview"/> | **Industrial & Software Engineering RFCs / Specs**, Interface Control Documents (ICDs), telemetry tables, and code syntax listings.<br/><br/>`latex-workflow init technical_specification my_spec` |
+| **Executive Report**<br/>`templates/executive_report/` | <img src="assets/preview_executive_report.png" width="180" alt="Executive Report Preview"/> | **Corporate Whitepapers & Proposals** with styled callout boxes, KPI metric tracking, and modern executive headers.<br/><br/>`latex-workflow init executive_report my_report` |
 
 ---
 
@@ -91,34 +94,44 @@ Open the repository in **Antigravity IDE** or **VS Code** (with the `LaTeX Works
 
 ---
 
-## 🛠️ Master CLI Engine (`scripts/latex_workflow.py`)
+## 🛠️ Master CLI Engine (`latex-workflow`)
 
 A universal CLI utility for end-to-end automation across any operating system:
 
-### 1. List All Available Templates
-```bash
-python scripts/latex_workflow.py list
+```text
+latex-workflow [-h] [-v] [--distro DISTRO] {doctor,build,inspect,clean,init,list} ...
 ```
 
-### 2. Scaffold a New Project from Template
+### 1. Diagnose Environment Toolchains
 ```bash
-python scripts/latex_workflow.py init modern_resume my_new_resume
+latex-workflow doctor
+```
+*Checks your TeX Live engines, Python, Poppler utilities, and Git, offering 1-click platform remedies if anything is missing.*
+
+### 2. List All Available Templates
+```bash
+latex-workflow list
 ```
 
-### 3. Compile Any Document
+### 3. Scaffold a New Project from Template
 ```bash
-python scripts/latex_workflow.py build my_new_resume/main.tex
+latex-workflow init modern_resume my_new_resume
 ```
 
-### 4. Inspect PDF Layout (Visual PNG Extraction for AI / Human QA)
+### 4. Compile Any Document
 ```bash
-python scripts/latex_workflow.py inspect my_new_resume/main.tex --dpi 150
+latex-workflow build my_new_resume/main.tex
+```
+
+### 5. Inspect PDF Layout (Visual PNG Extraction for AI / Human QA)
+```bash
+latex-workflow inspect my_new_resume/main.tex --dpi 150
 ```
 *Compiles the document and extracts `previews/page-1.png` for visual inspection.*
 
-### 5. Clean Auxiliary Build Artifacts
+### 6. Clean Auxiliary Build Artifacts
 ```bash
-python scripts/latex_workflow.py clean my_new_resume
+latex-workflow clean my_new_resume
 ```
 
 ---
@@ -220,14 +233,28 @@ Latex-AI-Workflow/
 
 ---
 
+---
+
+## ⭐ Star History
+
+If you find **Latex AI Workflow** helpful for your academic, professional, or corporate documents, please consider giving it a star on GitHub!
+
+<div align="center">
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Divyansh0730/Latex-AI-Workflow&type=Date)](https://star-history.com/#Divyansh0730/Latex-AI-Workflow&Date)
+
+</div>
+
+---
+
 ## 🤝 Contributing
 
-Contributions, new LaTeX templates, and improvements are warmly welcomed! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on code style and testing.
+Contributions, new LaTeX templates, and improvements are warmly welcomed! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on code style, roadmap items, and local testing.
 
 ---
 
 ## 📜 License
 
-This project is open-source software licensed under the **[MIT License](LICENSE)**.
+This project is open-source software licensed under the **[MIT License](LICENSE)**. See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 Developed with ❤️ by **[Divyansh Jha](https://github.com/Divyansh0730)** and open to the global community.

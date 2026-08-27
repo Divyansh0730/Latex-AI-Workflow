@@ -53,3 +53,6 @@ desktop.ini
 build/
 dist/
 tmp/
+*.egg-info/
+.eggs/
+

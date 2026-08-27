@@ -22,6 +22,21 @@ if sys.platform == "win32":
     except Exception:
         pass
 
+__version__ = "1.1.0"
+
+# ANSI Color formatting
+USE_COLOR = sys.stdout.isatty() and os.environ.get("NO_COLOR") is None
+
+def color(text: str, code: str) -> str:
+    return f"\033[{code}m{text}\033[0m" if USE_COLOR else text
+
+def green(text: str) -> str: return color(text, "32")
+def red(text: str) -> str: return color(text, "31")
+def yellow(text: str) -> str: return color(text, "33")
+def blue(text: str) -> str: return color(text, "34")
+def bold(text: str) -> str: return color(text, "1")
+def cyan(text: str) -> str: return color(text, "36")
+
 DEFAULT_WSL_DISTRO = "Ubuntu-22.04"
 
 def is_native_latex_available() -> bool:
@@ -199,10 +214,61 @@ def cmd_list(args):
     print("--------------------------------------------------\n")
     return 0
 
+def cmd_doctor(args):
+    """Diagnose local environment for required LaTeX and rendering toolchains."""
+    print(bold("\n🩺 Latex AI Workflow - Environment Doctor"))
+    print("=" * 52)
+    print(f" • Framework Version : {cyan('v' + __version__)}")
+    print(f" • Host Platform      : {cyan(sys.platform)}")
+    
+    py_ver = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+    py_status = green(f"OK (v{py_ver})") if sys.version_info >= (3, 8) else yellow(f"Outdated (v{py_ver})")
+    print(f" • Python Runtime     : {py_status}")
+    print("-" * 52)
+
+    tools = [
+        ("latexmk", "Primary LaTeX build engine (required)"),
+        ("pdflatex", "PDF generation compiler (required)"),
+        ("pdftoppm", "Poppler utilities / PNG visual inspection (required)"),
+        ("xelatex", "XeTeX Unicode compiler (optional)"),
+        ("lualatex", "LuaTeX engine (optional)"),
+        ("git", "Version control engine (recommended)")
+    ]
+
+    all_core_ok = True
+    for tool_name, desc in tools:
+        path = shutil.which(tool_name)
+        if path:
+            print(f" • {bold(tool_name):<12} : {green('✅ Found')} ({path})")
+        else:
+            if tool_name in ["latexmk", "pdflatex", "pdftoppm"]:
+                all_core_ok = False
+                print(f" • {bold(tool_name):<12} : {red('❌ Missing')} - {desc}")
+            else:
+                print(f" • {bold(tool_name):<12} : {yellow('⚠️  Optional')} - {desc}")
+
+    print("=" * 52)
+    if all_core_ok:
+        print(green("🎉 All essential toolchains are installed and ready to compile!"))
+    else:
+        print(red("⚠️  Some required tools are missing."))
+        print(yellow("\nQuick Installation Guide:"))
+        print(" • Linux / WSL2: run 'chmod +x scripts/setup.sh && ./scripts/setup.sh'")
+        print(" • macOS:        run 'brew install --cask mactex-no-gui poppler latexmk'")
+        print(" • Windows:      install MiKTeX (https://miktex.org) or use WSL2")
+    print("")
+    return 0 if all_core_ok else 1
+
 def main():
-    parser = argparse.ArgumentParser(description="Latex AI Workflow - Universal Master CLI Engine")
+    parser = argparse.ArgumentParser(
+        description=f"Latex AI Workflow CLI Engine v{__version__} - Universal LaTeX Automation"
+    )
+    parser.add_argument("-v", "--version", action="version", version=f"latex-workflow v{__version__}")
     parser.add_argument("--distro", default=DEFAULT_WSL_DISTRO, help="WSL2 distribution name (Windows only)")
     subparsers = parser.add_subparsers(dest="command", required=True)
+
+    # doctor
+    subparsers.add_parser("doctor", help="Diagnose local environment for required compilers and dependencies")
 
     # build
     p_build = subparsers.add_parser("build", help="Compile a LaTeX document")
@@ -227,7 +293,9 @@ def main():
 
     args = parser.parse_args()
 
-    if args.command == "build":
+    if args.command == "doctor":
+        sys.exit(cmd_doctor(args))
+    elif args.command == "build":
         sys.exit(cmd_build(args))
     elif args.command == "inspect":
         sys.exit(cmd_inspect(args))
