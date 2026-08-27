@@ -53,6 +53,7 @@ desktop.ini
 build/
 dist/
 tmp/
+my_resume/
 *.egg-info/
 .eggs/
 

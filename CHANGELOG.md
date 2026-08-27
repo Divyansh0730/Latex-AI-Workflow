@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.0] - 2026-08-27
+
+### Added
+- **Automated CLI Unit Test Suite (`tests/test_cli.py`)**: Built-in regression testing verifying version, template listing, diagnostic doctor, and template scaffolding.
+- **CI/CD Pipeline Enhancement**: Integrated automated CLI testing step in `.github/workflows/compile-latex.yml`.
+- **ATS Strict 1-Page Resume Optimization**: Enhanced resume engine to support high-density, ATS-grade 1-page formatting without layout float or multi-column parsing degradation.
+
+### Fixed
+- **Scaffolding Artifact Leakage (`latex-workflow init`)**: Fixed bug where `.aux`, `.log`, `.synctex.gz`, and `.pdf` build files were inadvertently copied into freshly initialized projects.
+- **Compound Extension Handling**: Added endswith-based filtering in file copy handlers.
+
+---
+
 ## [1.1.0] - 2026-08-27
 
 ### Added

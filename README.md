@@ -4,7 +4,7 @@
 ### Universal, AI-Augmented, Publication-Grade LaTeX Framework & CLI Engine
 **An Overleaf-Equivalent Local LaTeX Stack for Resumes, Academic Papers, Theses, Slides & Technical Docs**
 
-[![Release](https://img.shields.io/badge/Release-v1.1.0-blue.svg?style=flat-square)](CHANGELOG.md)
+[![Release](https://img.shields.io/badge/Release-v1.2.0-blue.svg?style=flat-square)](CHANGELOG.md)
 [![Build & Verify](https://github.com/Divyansh0730/Latex-AI-Workflow/actions/workflows/compile-latex.yml/badge.svg)](https://github.com/Divyansh0730/Latex-AI-Workflow/actions/workflows/compile-latex.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 [![Engine: TeX Live](https://img.shields.io/badge/TeX_Live-2023%2B-forestgreen.svg?style=flat-square&logo=latex)](https://www.tug.org/texlive/)

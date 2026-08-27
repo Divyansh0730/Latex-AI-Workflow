@@ -22,7 +22,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 # ANSI Color formatting
 USE_COLOR = sys.stdout.isatty() and os.environ.get("NO_COLOR") is None
@@ -174,25 +174,29 @@ def cmd_clean(args):
     return 0
 
 def cmd_init(args):
-    """Scaffold a new LaTeX project from a template."""
+    """Scaffold a new LaTeX project from a template without copying build artifacts."""
     template_name = args.template
     target_dir = Path(args.dest_dir).resolve()
     
     root_dir = Path(__file__).resolve().parent.parent
     template_src = root_dir / "templates" / template_name
     
-    available_templates = [d.name for d in (root_dir / "templates").iterdir() if d.is_dir()]
+    available_templates = sorted([d.name for d in (root_dir / "templates").iterdir() if d.is_dir()])
     
     if not template_src.exists():
         print(f"[Error] Template '{template_name}' not found. Available templates: {available_templates}")
         return 1
         
+    ignored_extensions = (".aux", ".log", ".out", ".toc", ".synctex.gz", ".fls", ".fdb_latexmk", ".bbl", ".blg", ".nav", ".snm", ".vrb", ".pdf", ".gz")
+    
     target_dir.mkdir(parents=True, exist_ok=True)
+    copied_count = 0
     for item in template_src.iterdir():
-        if item.is_file():
+        if item.is_file() and not any(item.name.endswith(ext) for ext in ignored_extensions):
             shutil.copy2(item, target_dir / item.name)
+            copied_count += 1
             
-    print(f"[OK] Initialized new LaTeX project from template '{template_name}' at:")
+    print(f"[OK] Initialized new LaTeX project from template '{template_name}' ({copied_count} file(s)) at:")
     print(f"     {target_dir}")
     return 0
 

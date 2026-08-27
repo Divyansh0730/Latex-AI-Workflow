@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "latex-ai-workflow"
-version = "1.1.0"
+version = "1.2.0"
 description = "Universal, AI-Augmented, Publication-Grade LaTeX Framework & CLI Engine"
 readme = "README.md"
 authors = [
